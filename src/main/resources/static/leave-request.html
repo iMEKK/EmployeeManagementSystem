@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Leave Request</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/home.html" class="brand">EMS</a>
+        <div class="nav-links">
+            <a href="/timesheets.html">My Timesheets</a>
+            <a href="/leave-request.html">Submit Leave</a>
+            <a href="/payslips.html">My Payslips</a>
+        </div>
+        <button id="logout-button">Logout</button>
+    </nav>
+
+    <div class="container">
+        <h1>Submit Leave Request</h1>
+        <form id="leave-request-form">
+            <div class="form-group">
+                <label for="startDate">Start Date</label>
+                <input type="date" id="startDate" required>
+            </div>
+            <div class="form-group">
+                <label for="endDate">End Date</label>
+                <input type="date" id="endDate" required>
+            </div>
+            <div class="form-group">
+                <label for="reason">Reason</label>
+                <textarea id="reason" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+    </div>
+
+    <script src="js/leave-request.js"></script>
+    <script>
+        document.getElementById('logout-button').addEventListener('click', () => {
+            localStorage.removeItem('auth');
+            window.location.href = '/login.html';
+        });
+    </script>
+</body>
+</html>

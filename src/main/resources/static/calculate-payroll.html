@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Payroll</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/home.html" class="brand">EMS</a>
+        <div class="nav-links">
+            <a href="/employees.html">Manage Employees</a>
+            <a href="/approve-leave.html">Approve Leave</a>
+            <a href="/calculate-payroll.html">Calculate Payroll</a>
+        </div>
+        <button id="logout-button">Logout</button>
+    </nav>
+
+    <div class="container">
+        <h1>Calculate Payroll</h1>
+        <div class="form-container">
+            <label for="month-input">Select Month:</label>
+            <input type="month" id="month-input" required>
+            <button id="calculate-btn" class="btn btn-primary">Calculate</button>
+        </div>
+        <hr>
+        <h2>Results</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Employee</th>
+                    <th>Pay Period</th>
+                    <th>Calculated Base Pay</th>
+                    <th>Overtime Pay</th>
+                    <th>Net Pay</th>
+                </tr>
+            </thead>
+            <tbody id="payroll-results-body">
+                <!-- Results will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/calculate-payroll.js"></script>
+    <script>
+        document.getElementById('logout-button').addEventListener('click', () => {
+            localStorage.removeItem('auth');
+            window.location.href = '/login.html';
+        });
+    </script>
+</body>
+</html>

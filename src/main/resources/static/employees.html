@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Employees</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/home.html" class="brand">EMS</a>
+        <div class="nav-links">
+            <a href="/employees.html">Manage Employees</a>
+            <a href="/approve-leave.html">Approve Leave</a>
+            <a href="/calculate-payroll.html">Calculate Payroll</a>
+        </div>
+        <button id="logout-button">Logout</button>
+    </nav>
+
+    <div class="container">
+        <h1>Manage Employees</h1>
+        <button id="add-employee-btn" class="btn btn-primary">Add New Employee</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="employee-table-body">
+                <!-- Data will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/employees.js"></script>
+    <script>
+        // Simple logout functionality for all pages
+        document.getElementById('logout-button').addEventListener('click', () => {
+            localStorage.removeItem('auth');
+            window.location.href = '/login.html';
+        });
+    </script>
+</body>
+</html>
