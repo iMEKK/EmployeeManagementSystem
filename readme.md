@@ -1,65 +1,86 @@
-# Employee Management System REST API
+# Employee Management System
 
-This project is a REST API for an Employee Management System, built with Java and Spring Boot. The goal is to create a system for managing employees and eventually calculating salaries automatically.
+A full-stack web application for managing employees, payroll, and leave requests, built with a Spring Boot backend and a vanilla JavaScript frontend.
 
-## Tech Stack
+## ✨ Features
 
-- **Backend:** Java 17
-- **Framework:** Spring Boot
-- **Data:** Spring Data JPA (Hibernate)
-- **Database:** H2 (In-memory, for development)
-- **Build Tool:** Maven
+This application implements role-based access control with two main roles: **Admin** and **Employee**.
 
-## Project Structure
+### 👨‍💼 Admin Features
+- **Employee Management**: Full CRUD (Create, Read, Update, Delete) functionality for all employee records.
+- **Leave Approval**: View all submitted leave requests and approve or reject them.
+- **Payroll Calculation**: Trigger monthly payroll calculations for all employees based on their work hours, overtime, and approved leave.
 
-The project follows a standard Spring Boot application structure:
+### 👷 Employee Features
+- **Time Tracking**: View personal timesheet history.
+- **Leave Requests**: Submit new leave requests for approval.
+- **View Payslips**: View personal payroll history (payslips).
+
+## 🛠️ Tech Stack
+
+- **Backend**:
+  - Java 17
+  - Spring Boot 3
+  - Spring Security (for Role-Based Authentication)
+  - Spring Data JPA (Hibernate)
+  - Maven
+- **Database**:
+  - H2 In-Memory Database
+- **Frontend**:
+  - HTML5
+  - CSS3
+  - Vanilla JavaScript (ES6)
+
+## 📂 Project Structure
+
+The project is organized into two main parts within the standard Maven structure:
 
 ```
 .
 └── src/
-    └── main/
-        └── java/
-            └── com/
-                └── example/
-                    └── demo/
-                        ├── DemoApplication.java  // Main application entry point
-                        ├── model/
-                        │   └── Employee.java       // JPA Entity for Employee
-                        ├── repository/
-                        │   └── EmployeeRepository.java // Spring Data JPA repository
-                        └── controller/
-                            └── EmployeeController.java // REST controller for employees
+    ├── main/
+    │   ├── java/com/example/demo/  // Spring Boot Backend Source Code
+    │   │   ├── config/             // SecurityConfig, DataSeeder
+    │   │   ├── controller/         // REST API Controllers
+    │   │   ├── dto/                // Data Transfer Objects (ErrorResponse)
+    │   │   ├── exception/          // Global Exception Handling
+    │   │   ├── model/              // JPA Entities (Employee, Payroll, etc.)
+    │   │   ├── repository/         // Spring Data JPA Repositories
+    │   │   └── service/            // Business Logic Services
+    │   │
+    │   └── resources/
+    │       ├── static/             // Frontend Source Code
+    │       │   ├── css/style.css
+    │       │   ├── js/             // All JavaScript files for the UI
+    │       │   └── *.html          // All HTML pages
+    │       └── application.properties
+    │
+    └── test/                       // Test code
 ```
 
-- **`DemoApplication.java`**: The main class that bootstraps the Spring Boot application.
-- **`model`**: Contains the JPA entity classes that map to database tables.
-- **`repository`**: Contains Spring Data JPA interfaces for database operations (CRUD).
-- **`controller`**: Contains REST controllers that define the API endpoints and handle incoming HTTP requests.
+## 🚀 How to Run and Test
 
-## How to Run
+### Prerequisites
+- Java 17 (or higher)
+- Apache Maven
 
-1.  Make sure you have Java 17 and Maven installed.
-2.  Open the project in your IDE.
-3.  The IDE should automatically resolve the Maven dependencies defined in `pom.xml`.
-4.  Run the `main` method in the `DemoApplication.java` class.
-5.  The application will start on the default port (usually 8080).
+### Running the Application
+1.  Open the project in your favorite IDE (like IntelliJ IDEA or VS Code).
+2.  Locate and run the `main` method in `DemoApplication.java`.
+3.  The application will start on the default port `8080`.
 
-## Available API Endpoints
+### Testing the Application
+1.  Once the application is running, open your web browser and go to the login page:
+    - **URL:** `http://localhost:8080/login.html`
 
-### Employee API (`/api/employees`)
+2.  Use the default credentials created by the `DataSeeder` to log in and test the features for each role.
 
--   **`GET /api/employees`**
-    -   **Description:** Retrieves a list of all employees.
-    -   **Response:** `200 OK` with a JSON array of employee objects.
+## 🔑 Default Credentials
 
--   **`POST /api/employees`**
-    -   **Description:** Creates a new employee.
-    -   **Request Body:** A JSON object representing the new employee.
-        ```json
-        {
-          "firstName": "John",
-          "lastName": "Doe",
-          "email": "john.doe@example.com"
-        }
-        ```
-    -   **Response:** `200 OK` with the created employee object, including its new `id`.
+The system automatically creates the following users for testing purposes when it first starts up:
+
+| Username | Password | Role | Description |
+| :--- | :--- | :--- | :--- |
+| `admin` | `adminpass` | **Admin** | Has access to all administrative features. |
+| `employee1` | `pass1` | Employee | A diligent employee with overtime records. |
+| `employee2` | `pass2` | Employee | A normal employee with an approved leave record. |
